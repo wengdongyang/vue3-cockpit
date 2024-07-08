@@ -5,13 +5,24 @@ import * as lodash from 'lodash';
 // apis
 // hooks
 // utils
+import { createEchartsLinearColorStops } from '@src/utils';
 // types
 // stores
 // mixins
 // configs
 // components
 
-const grid = { show: false, left: 20, right: 20, top: 40, bottom: 20, containLabel: true, backgroundColor: 'rgba(0,0,0,0)', borderWidth: 1, borderColor: '#ccc' };
+const grid = {
+  show: false,
+  left: 20,
+  right: 20,
+  top: 40,
+  bottom: 20,
+  containLabel: true,
+  backgroundColor: 'rgba(0,0,0,0)',
+  borderWidth: 1,
+  borderColor: '#ccc',
+};
 
 export const useEchartBarDefault = (fieldNames = { name: 'name', value: 'value' }) => {
   const ECHART_BAR_DEFAULT_SERIES_DATA = ref([]);
@@ -45,7 +56,15 @@ export const useEchartBarDefault = (fieldNames = { name: 'name', value: 'value' 
           axisLine: { show: true, lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' } },
           splitLine: { show: true, lineStyle: { color: '#484753', width: 1, type: 'solid' } },
           axisTick: { show: 'auto', inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisLabel: {
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         xAxis: {
           show: true,
@@ -53,8 +72,24 @@ export const useEchartBarDefault = (fieldNames = { name: 'name', value: 'value' 
           data: xAxisData,
           axisLine: { lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' }, show: true },
           splitLine: { lineStyle: { color: '#484753', width: 1, type: 'solid' }, show: false },
-          axisTick: { alignWithLabel: false, interval: 'auto', show: true, inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { interval: 'auto', show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisTick: {
+            alignWithLabel: false,
+            interval: 'auto',
+            show: true,
+            inside: false,
+            length: 5,
+            lineStyle: { width: 1 },
+          },
+          axisLabel: {
+            interval: 'auto',
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         series: [
           {
@@ -124,7 +159,15 @@ export const useEchartBarGradient = (fieldNames = { name: 'name', value: 'value'
           axisLine: { show: true, lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' } },
           splitLine: { show: true, lineStyle: { color: '#484753', width: 1, type: 'solid' } },
           axisTick: { show: 'auto', inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisLabel: {
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         xAxis: {
           show: true,
@@ -132,8 +175,24 @@ export const useEchartBarGradient = (fieldNames = { name: 'name', value: 'value'
           data: xAxisData,
           axisLine: { lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' }, show: true },
           splitLine: { lineStyle: { color: '#484753', width: 1, type: 'solid' }, show: false },
-          axisTick: { alignWithLabel: false, interval: 'auto', show: true, inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { interval: 'auto', show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisTick: {
+            alignWithLabel: false,
+            interval: 'auto',
+            show: true,
+            inside: false,
+            length: 5,
+            lineStyle: { width: 1 },
+          },
+          axisLabel: {
+            interval: 'auto',
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         series: [
           {
@@ -141,17 +200,10 @@ export const useEchartBarGradient = (fieldNames = { name: 'name', value: 'value'
             barMaxWidth: 20,
             data: seriesData0,
             itemStyle: {
-              color: {
-                type: 'linear',
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  { offset: 0, color: 'red' },
-                  { offset: 1, color: 'blue' },
-                ],
-              },
+              color: createEchartsLinearColorStops([
+                { offset: 0, color: 'red' },
+                { offset: 1, color: 'blue' },
+              ]),
             },
             showBackground: false,
             backgroundStyle: {
@@ -195,8 +247,12 @@ export const useEchartBarCarousel = (fieldNames = { name: 'name', value: 'value'
       const seriesData = get(ECHART_BAR_CAROUSEL_SERIES_DATA);
       const nameKey = fieldNames['name'];
       const valueKey = fieldNames['value'];
-      const xAxisData = seriesData.filter((item, index) => count <= index && index < count + step).map((item) => lodash.get(item, [nameKey]));
-      const seriesData0 = seriesData.filter((item, index) => count <= index && index < count + step).map((item) => lodash.get(item, [valueKey]));
+      const xAxisData = seriesData
+        .filter((item, index) => count <= index && index < count + step)
+        .map((item) => lodash.get(item, [nameKey]));
+      const seriesData0 = seriesData
+        .filter((item, index) => count <= index && index < count + step)
+        .map((item) => lodash.get(item, [valueKey]));
       return {
         grid,
         backgroundColor: 'transparent',
@@ -220,7 +276,15 @@ export const useEchartBarCarousel = (fieldNames = { name: 'name', value: 'value'
           axisLine: { show: true, lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' } },
           splitLine: { show: true, lineStyle: { color: '#484753', width: 1, type: 'solid' } },
           axisTick: { show: 'auto', inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisLabel: {
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         xAxis: {
           show: true,
@@ -228,8 +292,24 @@ export const useEchartBarCarousel = (fieldNames = { name: 'name', value: 'value'
           data: xAxisData,
           axisLine: { lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' }, show: true },
           splitLine: { lineStyle: { color: '#484753', width: 1, type: 'solid' }, show: false },
-          axisTick: { alignWithLabel: false, interval: 'auto', show: true, inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { interval: 'auto', show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisTick: {
+            alignWithLabel: false,
+            interval: 'auto',
+            show: true,
+            inside: false,
+            length: 5,
+            lineStyle: { width: 1 },
+          },
+          axisLabel: {
+            interval: 'auto',
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         series: [
           {
@@ -323,7 +403,15 @@ export const useEchartBarCarouselHighLight = (fieldNames = { name: 'name', value
           axisLine: { show: true, lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' } },
           splitLine: { show: true, lineStyle: { color: '#484753', width: 1, type: 'solid' } },
           axisTick: { show: 'auto', inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisLabel: {
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         xAxis: {
           show: true,
@@ -331,8 +419,24 @@ export const useEchartBarCarouselHighLight = (fieldNames = { name: 'name', value
           data: xAxisData,
           axisLine: { lineStyle: { color: '#B9B8CE', width: 1, type: 'solid' }, show: true },
           splitLine: { lineStyle: { color: '#484753', width: 1, type: 'solid' }, show: false },
-          axisTick: { alignWithLabel: false, interval: 'auto', show: true, inside: false, length: 5, lineStyle: { width: 1 } },
-          axisLabel: { interval: 'auto', show: true, inside: false, rotate: 0, showMinLabel: null, showMaxLabel: null, margin: 8, fontSize: 12 },
+          axisTick: {
+            alignWithLabel: false,
+            interval: 'auto',
+            show: true,
+            inside: false,
+            length: 5,
+            lineStyle: { width: 1 },
+          },
+          axisLabel: {
+            interval: 'auto',
+            show: true,
+            inside: false,
+            rotate: 0,
+            showMinLabel: null,
+            showMaxLabel: null,
+            margin: 8,
+            fontSize: 12,
+          },
         },
         series: [
           {

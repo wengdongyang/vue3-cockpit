@@ -11,7 +11,12 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="仪表盘 - 普通">
-            <VChart class="chart-gauge" :option="{}" autoSize />
+            <VChart
+              class="chart-gauge"
+              :option="computedEchartsGaugeOption"
+              :ref="(ref) => (chartsGaugeRef = ref)"
+              autoSize
+            />
           </a-card>
         </a-col>
       </a-row>
@@ -27,6 +32,7 @@ import VChart, { THEME_KEY } from 'vue-echarts';
 // apis
 import { apiGetChartGauge } from '@src/apis';
 // hooks
+import { useEchartGauge } from './hooks';
 // utils
 // types
 // stores
@@ -34,7 +40,9 @@ import { apiGetChartGauge } from '@src/apis';
 // configs
 // components
 provide(THEME_KEY, 'dark');
+const { computedEchartsGaugeOption, setEchartGaugeValue } = useEchartGauge();
 
+const chartsGaugeRef = ref();
 const gaugeValue = ref(0);
 
 const { run } = useRequest(
@@ -46,6 +54,9 @@ const { run } = useRequest(
     onSuccess: ({ code, data, msg }) => {
       if (code === 200) {
         set(gaugeValue, data.num);
+        setEchartGaugeValue(data.num);
+
+        console.error(data.num);
       } else {
         message.error(msg);
       }
