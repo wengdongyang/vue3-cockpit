@@ -1,0 +1,18 @@
+/** @format */
+@header-height: 64px;
+.layout {
+  width: 100vw;
+  height: 100vh;
+  .header {
+    height: @header-height;
+  }
+  .content-layout {
+    .content-layout-sider {
+      height: calc(100vh - @header-height);
+    }
+    .content-layout-content {
+      height: calc(100vh - @header-height);
+      overflow-y: auto;
+    }
+  }
+}

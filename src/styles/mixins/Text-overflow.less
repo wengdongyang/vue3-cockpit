@@ -1,0 +1,15 @@
+/** @format */
+
+// 多行
+.text-overflow(@lineNum:1) when(@lineNum= 1) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-overflow(@lineNum:1) when not(@lineNum= 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @lineNum;
+}

@@ -1,7 +1,6 @@
-/** @format */
-
 import { fileURLToPath, URL } from 'node:url';
 
+import path from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -30,6 +29,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@src': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: `@import "${path.resolve('/src/styles/mixins/index.less')}";`, // less前置
+      },
     },
   },
   server: {

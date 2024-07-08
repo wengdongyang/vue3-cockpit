@@ -1,0 +1,30 @@
+/** @format */
+
+.table {
+  .thead,
+  .tbody {
+    .tr {
+      width: 100%;
+      display: flex;
+      .th,
+      .td {
+        font-size: 14px;
+        flex: 1;
+      }
+    }
+  }
+
+  .tbody {
+    .tr {
+      width: 100%;
+      display: flex;
+      .td {
+        font-size: 14px;
+        flex: 1;
+        &.td-ellipsis {
+          .text-overflow;
+        }
+      }
+    }
+  }
+}
