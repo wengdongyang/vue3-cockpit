@@ -11,29 +11,17 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="柱状图 - 普通">
-            <VChart
-              class="chart-bar"
-              :option="computedEchartsBarDefaultOption"
-              autoSize
-            />
+            <VChart class="chart-bar" :option="computedEchartsBarDefaultOption" autoSize />
           </a-card>
         </a-col>
         <a-col :span="8">
           <a-card class="card" title="柱状图 - 渐变">
-            <VChart
-              class="chart-bar"
-              :option="computedEchartsBarGradientOption"
-              autoSize
-            />
+            <VChart class="chart-bar" :option="computedEchartsBarGradientOption" autoSize />
           </a-card>
         </a-col>
         <a-col :span="8">
           <a-card class="card" title="柱状图 - 轮播">
-            <VChart
-              class="chart-bar"
-              :option="computedEchartsBarCarouselOption"
-              autoSize
-            />
+            <VChart class="chart-bar" :option="computedEchartsBarCarouselOption" autoSize />
           </a-card>
         </a-col>
         <a-col :span="8">
@@ -41,7 +29,7 @@
             <VChart
               class="chart-bar"
               :option="computedEchartsBarCarouselHighLightOption"
-              :ref="(ref) => (chartsBarCarouselHighLight = ref)"
+              :ref="(ref) => (chartsBarCarouselHighLightRef = ref)"
               autoSize
             />
           </a-card>
@@ -77,25 +65,22 @@ import {
 provide(THEME_KEY, 'dark');
 
 const dataSource = ref([]);
-const chartsBarCarouselHighLight = ref();
+const chartsBarCarouselHighLightRef = ref();
 
-const { computedEchartsBarDefaultOption, setEchartBarDefaultSeriesData } =
-  useEchartBarDefault({
-    name: 'cname',
-    value: 'num',
-  });
-const { computedEchartsBarGradientOption, setEchartBarGradientSeriesData } =
-  useEchartBarGradient({
-    name: 'cname',
-    value: 'num',
-  });
-const { computedEchartsBarCarouselOption, setEchartBarCarouselSeriesData } =
-  useEchartBarCarousel({
-    name: 'cname',
-    value: 'num',
-    step: 5,
-    interval: 1000,
-  });
+const { computedEchartsBarDefaultOption, setEchartBarDefaultSeriesData } = useEchartBarDefault({
+  name: 'cname',
+  value: 'num',
+});
+const { computedEchartsBarGradientOption, setEchartBarGradientSeriesData } = useEchartBarGradient({
+  name: 'cname',
+  value: 'num',
+});
+const { computedEchartsBarCarouselOption, setEchartBarCarouselSeriesData } = useEchartBarCarousel({
+  name: 'cname',
+  value: 'num',
+  step: 5,
+  interval: 1000,
+});
 
 const {
   computedEchartsBarCarouselHighLightOption,
@@ -121,7 +106,7 @@ const { run } = useRequest(
         setEchartBarCarouselSeriesData(data.list);
 
         setEchartsBarCarouselHighLightSeriesData(data.list);
-        setEchartsBarCarouselHighLightTarget(get(chartsBarCarouselHighLight));
+        setEchartsBarCarouselHighLightTarget(get(chartsBarCarouselHighLightRef));
       } else {
         message.error(msg);
       }

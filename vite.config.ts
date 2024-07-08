@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { viteMockServe } from 'vite-plugin-mock';
-// import vueDevTools from 'vite-plugin-vue-devtools';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite';
 // https://vitejs.dev/config/
@@ -13,9 +13,13 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    // 新版开发者工具
     // vueDevTools(),
-    vueSetupExtend({ enableAutoExpose: true }), // setup上主动命名
-    viteMockServe({ mockPath: './src/mocks', enable: true }), // mock接口
+    // setup上主动命名
+    vueSetupExtend({ enableAutoExpose: true }),
+    // mock接口
+    viteMockServe({ mockPath: './src/mocks', enable: true }),
+    // html模板
     createHtmlPlugin({
       minify: true,
       entry: '/src/main.ts',
@@ -24,7 +28,7 @@ export default defineConfig({
         data: { title: '驾驶舱模板系统', injectScript: `` },
         tags: [{ injectTo: 'body-prepend', tag: 'section', attrs: { id: 'app' } }],
       },
-    }), // html模板
+    }),
   ],
   resolve: {
     alias: {
