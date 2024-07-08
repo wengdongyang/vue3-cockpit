@@ -4,7 +4,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-// import { viteMockServe } from 'vite-plugin-mock';
+import { viteMockServe } from 'vite-plugin-mock';
 // import vueDevTools from 'vite-plugin-vue-devtools';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite';
@@ -15,7 +15,7 @@ export default defineConfig({
     vueJsx(),
     // vueDevTools(),
     vueSetupExtend({ enableAutoExpose: true }), // setup上主动命名
-    // viteMockServe({ mockPath: './src/mocks', enable: true }), // mock接口
+    viteMockServe({ mockPath: './src/mocks', enable: true }), // mock接口
     createHtmlPlugin({
       minify: true,
       entry: '/src/main.ts',

@@ -68,6 +68,7 @@
     "fs": "^0.0.1-security",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "mockjs": "^1.1.0",
     "npm-run-all2": "^6.2.0",
     "postcss": "^8.4.39",
     "prettier": "^3.2.5",
