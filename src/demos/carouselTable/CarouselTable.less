@@ -7,13 +7,10 @@
 }
 .table {
   width: 100%;
-  :deep {
-    .index {
-      background-color: fade(#ddd, 10);
-    }
-
-    .age {
-      background-color: fade(red, 10);
-    }
+  :deep(.index) {
+    background-color: fade(#ddd, 10);
+  }
+  :deep(.age) {
+    background-color: fade(red, 10);
   }
 }
