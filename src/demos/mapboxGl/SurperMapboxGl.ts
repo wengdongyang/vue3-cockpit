@@ -22,12 +22,6 @@ interface IProps {
   mapOptions?: IMapOptions;
 }
 
-const GRIDS = {
-  SOURCE: 'GRIDS_EXCLUSIVE_SOURCE',
-  AREA_LAYER: 'GRIDS_EXCLUSIVE_AREA_LAYER',
-  LINE_LAYER: 'GRIDS_EXCLUSIVE_LINE_LAYER',
-  TEXT_LAYER: 'GRIDS_EXCLUSIVE_TEXT_LAYER',
-};
 export default class SurperMapboxGl {
   public surperMap?: Map;
 
@@ -39,7 +33,7 @@ export default class SurperMapboxGl {
     this.container = container;
     this.mapOptions = mapOptions;
 
-    this.initMap();
+    this.initMapStyle();
   }
 
   private privateInitSurperMap = () => {};
@@ -62,7 +56,16 @@ export default class SurperMapboxGl {
       console.warn(error);
     }
   };
-  private privateUpdateSurperMapLayer = () => {};
+  privateUpdateSurperMapLayer = (LAYER_ID: string, name: string, value: any) => {
+    const { surperMap } = this;
+    try {
+      if (surperMap) {
+        surperMap.setLayoutProperty(LAYER_ID, name, value);
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  };
   private privateResetSurperMapLayer = () => {};
   private privateRemoveSurperMapLayer = () => {};
 
@@ -102,7 +105,7 @@ export default class SurperMapboxGl {
 
   private privateSurperMapClick = () => {};
 
-  initMap = () => {
+  initMapStyle = () => {
     const { container, mapOptions } = this;
     try {
       if (container) {
@@ -118,6 +121,17 @@ export default class SurperMapboxGl {
           console.info(e);
         });
         this.surperMap = surperMap;
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  updateMapStyle = (layerId: string, name: string, value: any) => {
+    const { surperMap } = this;
+    try {
+      if (surperMap) {
+        surperMap.setLayoutProperty(layerId, name, value);
       }
     } catch (error) {
       console.warn(error);

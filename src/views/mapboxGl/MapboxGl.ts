@@ -53,7 +53,7 @@ export class SurperMapboxGl {
 
   private privateSurperMapClick = () => {};
 
-  initMap = () => {
+  initMapStyle = () => {
     const { container, mapOptions } = this;
     try {
       if (container) {

@@ -1,6 +1,6 @@
 <!-- @format -->
 <template>
-  <section>
+  <section class="map-layout">
     <section class="mapDom" :ref="(ref) => (mapDomRef = ref)" />
   </section>
 </template>
@@ -10,7 +10,7 @@ import { set, get, tryOnMounted } from '@vueuse/core';
 // apis
 // hooks
 // utils
-import SurperMapboxGlHeatmap from './MapboxglHeatmap';
+import SurperMapboxglHeatmap from './MapboxglHeatmap';
 // types
 // stores
 // mixins
@@ -36,10 +36,10 @@ const heatmap = {
   features,
 };
 
-const initMap = () => {
+const initMapStyle = () => {
   try {
     const mapDom = get(mapDomRef);
-    const map = new SurperMapboxGlHeatmap({
+    const map = new SurperMapboxglHeatmap({
       container: mapDom,
       mapOptions: {
         mapboxglOptions,
@@ -54,7 +54,7 @@ const initMap = () => {
 };
 
 tryOnMounted(() => {
-  initMap();
+  initMapStyle();
 });
 </script>
 <style lang="less" scoped>

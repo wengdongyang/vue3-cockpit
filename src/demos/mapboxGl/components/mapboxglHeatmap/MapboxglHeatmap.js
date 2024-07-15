@@ -7,15 +7,14 @@ import * as lodash from 'lodash';
 // stores
 // mixins
 // configs
-import cameras from '../../assets/json/cameras.json';
 // components
 import SurperMapboxGl from '../../SurperMapboxGl.ts';
 
 const GRIDS = {
-  SOURCE: 'GRIDS_EXCLUSIVE_SOURCE',
-  AREA_LAYER: 'GRIDS_EXCLUSIVE_AREA_LAYER',
-  LINE_LAYER: 'GRIDS_EXCLUSIVE_LINE_LAYER',
-  TEXT_LAYER: 'GRIDS_EXCLUSIVE_TEXT_LAYER',
+  SOURCE: 'GRIDS_SOURCE',
+  AREA_LAYER: 'GRIDS_AREA_LAYER',
+  LINE_LAYER: 'GRIDS_LINE_LAYER',
+  TEXT_LAYER: 'GRIDS_TEXT_LAYER',
 };
 
 const HEATMAP = {
@@ -24,20 +23,20 @@ const HEATMAP = {
   POINT_LAYER: 'earthquakes-point',
 };
 
-export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
+export default class SurperMapboxglHeatmap extends SurperMapboxGl {
   constructor(props) {
     super(props);
   }
 
   surperMapStyleLoadCallback = () => {
-    this.initMapArea();
+    this.initMapStyleArea();
     this.updateMapArea();
 
-    this.initMapHeatmap();
+    this.initMapStyleHeatmap();
     this.updateMapHeatmap();
   };
 
-  initMapArea = () => {
+  initMapStyleArea = () => {
     const { surperMap, mapOptions } = this;
     try {
       if (surperMap) {
@@ -99,7 +98,7 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
     }
   };
 
-  initMapHeatmap = () => {
+  initMapStyleHeatmap = () => {
     const { surperMap, mapOptions } = this;
     try {
       const sourceGeojson = lodash.get(mapOptions, ['heatmap']) || {};
