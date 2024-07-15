@@ -26,7 +26,7 @@ const features = cameras
   .filter((camera) => camera.longitude && camera.latitude)
   .map((camera, index) => ({
     type: 'Feature',
-    properties: Object.assign({ mag: Math.random() * 100 }, camera),
+    properties: Object.assign({ mag: Math.random() * 6 }, camera),
     geometry: { type: 'Point', coordinates: [camera.longitude, camera.latitude] },
   }));
 
