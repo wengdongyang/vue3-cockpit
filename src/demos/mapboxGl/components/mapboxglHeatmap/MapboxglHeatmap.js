@@ -1,6 +1,5 @@
 /** @format */
 import * as lodash from 'lodash';
-import mapboxgl from 'mapbox-gl';
 // apis
 // hooks
 // utils
@@ -8,7 +7,7 @@ import mapboxgl from 'mapbox-gl';
 // stores
 // mixins
 // configs
-import { ENV } from '@src/configs';
+import cameras from '../../assets/json/cameras.json';
 // components
 import SurperMapboxGl from '../../SurperMapboxGl.ts';
 
@@ -114,14 +113,11 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
             source: HEATMAP.SOURCE,
             maxzoom: 9,
             paint: {
-              // Increase the heatmap weight based on frequency and property magnitude
+              // 根据频率和属性大小增加热力图权重
               'heatmap-weight': ['interpolate', ['linear'], ['get', 'mag'], 0, 0, 6, 1],
-              // Increase the heatmap color weight weight by zoom level
-              // heatmap-intensity is a multiplier on top of heatmap-weight
+              // 根据缩放级别增加热力图权重
               'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
-              // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-              // Begin color ramp at 0-stop with a 0-transparancy color
-              // to create a blur-like effect.
+              // 色带
               'heatmap-color': [
                 'interpolate',
                 ['linear'],
@@ -139,9 +135,9 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
                 1,
                 'rgb(178,24,43)',
               ],
-              // Adjust the heatmap radius by zoom level
-              'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, 9, 20],
-              // Transition from heatmap to circle layer by zoom level
+              // 根据缩放级别调整热力图半径
+              'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 2, 10, 20],
+              // 透明度
               'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0],
             },
           });

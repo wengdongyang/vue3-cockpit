@@ -12,7 +12,7 @@ import { ENV } from '@src/configs/index.ts';
 
 export const mapboxglOptions = {
   zoom: 13,
-  minZoom: 11,
+  minZoom: 8,
   maxZoom: 22,
   center: [120.464111469736, 30.031482835450717],
   pitch: 40,

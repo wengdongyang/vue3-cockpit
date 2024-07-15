@@ -17,32 +17,22 @@ import SurperMapboxGlHeatmap from './MapboxglHeatmap';
 // configs
 import { mapboxglOptions } from '../../configs';
 import grids from '../../assets/json/grids.json';
+import cameras from '../../assets/json/cameras.json';
 // components
 const mapDomRef = ref();
 const mapRef = ref();
 
-const features = new Array(100).fill().map((element) => ({
-  type: 'Feature',
-  properties: {
-    id: 'ak16994521',
-    mag: Math.floor(Math.random() * 100),
-    time: 1507425650893,
-    felt: null,
-    tsunami: 0,
-  },
-  geometry: {
-    type: 'Point',
-    coordinates: [120.45265258100005 + Math.random(), 30.049448176000055 + Math.random(), Math.random()],
-  },
-}));
+const features = cameras
+  .filter((camera) => camera.longitude && camera.latitude)
+  .map((camera, index) => ({
+    type: 'Feature',
+    properties: Object.assign({ mag: Math.random() * 6 }, camera),
+    geometry: { type: 'Point', coordinates: [camera.longitude, camera.latitude] },
+  }));
+
 const heatmap = {
   type: 'FeatureCollection',
-  crs: {
-    type: 'name',
-    properties: {
-      name: 'urn:ogc:def:crs:OGC:1.3:CRS84',
-    },
-  },
+  crs: { type: 'name' },
   features,
 };
 

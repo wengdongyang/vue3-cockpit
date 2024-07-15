@@ -113,6 +113,10 @@ export default class SurperMapboxGl {
         surperMap.on('style.load', () => {
           this.surperMapStyleLoadCallback();
         });
+
+        surperMap.on('click', (e) => {
+          console.info(e);
+        });
         this.surperMap = surperMap;
       }
     } catch (error) {
