@@ -15,6 +15,11 @@
           </a-card>
         </a-col>
         <a-col :span="12">
+          <a-card class="card" title="MapboxGl - 聚合撒点">
+            <MapboxglHeatmap />
+          </a-card>
+        </a-col>
+        <a-col :span="12">
           <a-card class="card" title="MapboxGl - 普通"> </a-card>
         </a-col>
         <a-col :span="24">

@@ -105,7 +105,6 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
       const sourceGeojson = lodash.get(mapOptions, ['heatmap']) || {};
       if (surperMap) {
         if (sourceGeojson && !lodash.isEmpty(sourceGeojson)) {
-          console.error('initMapHeatmap');
           this.privateInitSurperMapSource(HEATMAP.SOURCE);
           this.privateInitSurperMapLayer(HEATMAP.HEAT_LAYER, {
             id: HEATMAP.HEAT_LAYER,
@@ -166,11 +165,8 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
     const { surperMap, mapOptions } = this;
     try {
       const sourceGeojson = lodash.get(mapOptions, ['heatmap']) || {};
-      if (surperMap) {
-        if (sourceGeojson && !lodash.isEmpty(sourceGeojson)) {
-          console.error('updateMapHeatmap');
-          this.privateUpdateSurperMapSource(HEATMAP.SOURCE, sourceGeojson);
-        }
+      if (surperMap && sourceGeojson && !lodash.isEmpty(sourceGeojson)) {
+        this.privateUpdateSurperMapSource(HEATMAP.SOURCE, sourceGeojson);
       }
     } catch (error) {
       console.warn(error);
