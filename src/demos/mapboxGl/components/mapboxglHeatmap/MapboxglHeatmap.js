@@ -113,14 +113,7 @@ export default class SurperMapboxGlHeatmap extends SurperMapboxGl {
             source: HEATMAP.SOURCE,
             paint: {
               // 根据频率和属性大小增加热力图权重
-              'heatmap-weight': {
-                property: 'mag',
-                type: 'exponential',
-                stops: [
-                  [1, 0],
-                  [62, 1],
-                ],
-              },
+              // 'heatmap-weight': { property: 'mag', type: 'exponential', stops: [ [1, 0], [62, 1], ], },
               // 根据缩放级别增加热力图权重
               'heatmap-intensity': {
                 stops: [

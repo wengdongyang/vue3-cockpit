@@ -9,12 +9,12 @@
     </template>
     <section class="content">
       <a-row :gutter="[12, 12]">
-        <a-col :span="24">
+        <a-col :span="12">
           <a-card class="card" title="MapboxGl - 热力图">
             <MapboxglHeatmap />
           </a-card>
         </a-col>
-        <a-col :span="24">
+        <a-col :span="12">
           <a-card class="card" title="MapboxGl - 普通"> </a-card>
         </a-col>
         <a-col :span="24">
