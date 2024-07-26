@@ -19,6 +19,7 @@ import './styles/reset/index.less';
 import './styles/tailwind.css';
 
 import 'echarts';
+import 'echarts-liquidfill';
 import 'dayjs/locale/zh-cn';
 
 import dayjs from 'dayjs';

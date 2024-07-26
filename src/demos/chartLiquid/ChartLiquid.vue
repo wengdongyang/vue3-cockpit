@@ -13,7 +13,8 @@
           <a-card class="card" title="水波图 - 普通">
             <VChart
               :style="{ width: '100%', height: '400px' }"
-              :option="{}"
+              :option="computedEchartsLiquidDefaultOption"
+              :ref="(ref) => (chartsBarCarouselHighLightRef = ref)"
               autoSize
             />
           </a-card>
@@ -31,6 +32,7 @@ import VChart, { THEME_KEY } from 'vue-echarts';
 // apis
 import { apiGetChartLiquid } from '@src/apis';
 // hooks
+import { useEchartLiquidDefault } from './hooks';
 // utils
 // types
 // stores
@@ -38,6 +40,10 @@ import { apiGetChartLiquid } from '@src/apis';
 // configs
 // components
 provide(THEME_KEY, 'dark');
+
+const { computedEchartsLiquidDefaultOption, setEchartLiquidDefaultSeriesData } = useEchartLiquidDefault();
+
+const chartsBarCarouselHighLightRef = ref();
 
 const liquidValue = ref(0);
 
@@ -50,6 +56,8 @@ const { run } = useRequest(
     onSuccess: ({ code, data, msg }) => {
       if (code === 200) {
         set(liquidValue, data.num);
+
+        console.error(chartsBarCarouselHighLightRef.value.getOption());
       } else {
         message.error(msg);
       }
