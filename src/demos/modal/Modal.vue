@@ -11,14 +11,12 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="弹窗 - 自定义">
-            <a-button type="primary" @click="onClickOpenDefaultModal">打开</a-button>
+            <a-button type="primary" @click="modalVisible = true">打开</a-button>
 
             <VueFinalModal v-if="modalVisible" v-model="modalVisible">
               <section class="modal">
                 <header class="modal-header"></header>
-                <section class="modal-content">
-                  <a-button type="primary" @click="modalVisible2 = true">打开</a-button>
-                </section>
+                <section class="modal-content"></section>
                 <footer class="modal-footer"></footer>
               </section>
             </VueFinalModal>
@@ -40,9 +38,6 @@ import { VueFinalModal } from 'vue-final-modal';
 // configs
 // components
 const modalVisible = ref(false);
-const onClickOpenDefaultModal = () => {
-  modalVisible.value = true;
-};
 </script>
 <style lang="less" scoped>
 @import './Modal.less';
