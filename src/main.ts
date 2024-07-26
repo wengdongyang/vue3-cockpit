@@ -1,6 +1,7 @@
 /** @format */
 import 'minireset.css/minireset.css';
 import 'nprogress/nprogress.css';
+import 'vue-final-modal/style.css';
 import 'ant-design-vue/dist/reset.css';
 import 'vue-json-pretty/lib/styles.css';
 import 'font-awesome/css/font-awesome.css';

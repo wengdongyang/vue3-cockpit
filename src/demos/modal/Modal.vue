@@ -10,11 +10,18 @@
     <section class="content">
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
-          <a-card class="card" title="弹窗 - 普通"> </a-card>
-        </a-col>
-        <a-col :span="8">
-          <a-card class="card" title="弹窗 - 背景图">
-            <teleport to="body"></teleport>
+          <a-card class="card" title="弹窗 - 自定义">
+            <a-button type="primary" @click="onClickOpenDefaultModal">打开</a-button>
+
+            <VueFinalModal v-if="modalVisible" v-model="modalVisible">
+              <section class="modal">
+                <header class="modal-header"></header>
+                <section class="modal-content">
+                  <a-button type="primary" @click="modalVisible2 = true">打开</a-button>
+                </section>
+                <footer class="modal-footer"></footer>
+              </section>
+            </VueFinalModal>
           </a-card>
         </a-col>
       </a-row>
@@ -23,6 +30,7 @@
 </template>
 <script lang="jsx" setup>
 import { ref } from 'vue';
+import { VueFinalModal } from 'vue-final-modal';
 // apis
 // hooks
 // utils
@@ -31,6 +39,10 @@ import { ref } from 'vue';
 // mixins
 // configs
 // components
+const modalVisible = ref(false);
+const onClickOpenDefaultModal = () => {
+  modalVisible.value = true;
+};
 </script>
 <style lang="less" scoped>
 @import './Modal.less';
