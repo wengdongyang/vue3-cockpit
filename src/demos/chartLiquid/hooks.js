@@ -1,5 +1,5 @@
 /** @format */
-import { set } from '@vueuse/core';
+import { set, get } from '@vueuse/core';
 import { computed, ref } from 'vue';
 // apis
 // hooks
@@ -34,7 +34,7 @@ export const useEchartLiquidDefault = () => {
         series: [
           {
             type: 'liquidFill',
-            data: [0.6],
+            data: [get(ECHART_LIQUID_DEFAULT_SERIES_DATA)],
             color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
             center: ['50%', '50%'],
             radius: '50%',

@@ -11,12 +11,7 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="水波图 - 普通">
-            <VChart
-              :style="{ width: '100%', height: '400px' }"
-              :option="computedEchartsLiquidDefaultOption"
-              :ref="(ref) => (chartsBarCarouselHighLightRef = ref)"
-              autoSize
-            />
+            <VChart :style="{ width: '100%', height: '400px' }" :option="computedEchartsLiquidDefaultOption" autoSize />
           </a-card>
         </a-col>
       </a-row>
@@ -43,8 +38,6 @@ provide(THEME_KEY, 'dark');
 
 const { computedEchartsLiquidDefaultOption, setEchartLiquidDefaultSeriesData } = useEchartLiquidDefault();
 
-const chartsBarCarouselHighLightRef = ref();
-
 const liquidValue = ref(0);
 
 const { run } = useRequest(
@@ -55,9 +48,8 @@ const { run } = useRequest(
     manual: true,
     onSuccess: ({ code, data, msg }) => {
       if (code === 200) {
-        set(liquidValue, data.num);
-
-        console.error(chartsBarCarouselHighLightRef.value.getOption());
+        set(liquidValue, data.num / 100);
+        setEchartLiquidDefaultSeriesData(data.num / 100);
       } else {
         message.error(msg);
       }
