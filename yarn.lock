@@ -3210,7 +3210,7 @@ core-js@^3.15.1:
   resolved "https://registry.npmmirror.com/core-js/-/core-js-3.37.1.tgz#d21751ddb756518ac5a00e4d66499df981a62db9"
   integrity sha512-Xn6qmxrQZyB0FFY8E3bgRXei3lWDJHhvI+u0q9TKIYM49G8pAr0FgnnrFRAmsbptZL1yxRADVXn+x5AGsbBfyw==
 
-countup.js@^2.8.0:
+countup.js@^2.6.2, countup.js@^2.8.0:
   version "2.8.0"
   resolved "https://registry.npmmirror.com/countup.js/-/countup.js-2.8.0.tgz#64951f2df3ede28839413d654d8fef28251c32a8"
   integrity sha512-f7xEhX0awl4NOElHulrl4XRfKoNH3rB+qfNSZZyjSZhaAoUk6elvhH+MNxMmlmuUJ2/QNTWPSA7U4mNtIAKljQ==
@@ -6484,6 +6484,13 @@ vue-countup-v2@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmmirror.com/vue-countup-v2/-/vue-countup-v2-4.0.0.tgz#061a1ac8ee4aa207bb9d23d2bcc1d53a5f7c3675"
   integrity sha512-XjKeHo1ndRlJtXvHd6B1eWOpbrJDdNU3rdYZwVPv2YlUXbvthsBT4kms5Fc/mn9RdXPrMX2H/ktAAQtKjWFisw==
+
+vue-countup-v3@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.npmmirror.com/vue-countup-v3/-/vue-countup-v3-1.4.2.tgz#c4cfe65b632267b3659e766184149e8954fd4f0e"
+  integrity sha512-nRC65jBcdgwybxqztgd/WaK8ZN5T9ECPyiCFGYFMewCsvqdRVo1CtpT7JREcPNF837Fgu/izTSFiuzrIGD6w0A==
+  dependencies:
+    countup.js "^2.6.2"
 
 vue-demi@>=0.14.5, vue-demi@>=0.14.8:
   version "0.14.8"

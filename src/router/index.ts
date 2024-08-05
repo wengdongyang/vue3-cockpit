@@ -27,11 +27,6 @@ import ChartPyramid from '@src/demos/chartPyramid/ChartPyramid.vue';
 import Modal from '@src/demos/modal/Modal.vue';
 import MapboxGl from '@src/demos/mapboxGl/MapboxGl.vue';
 
-import PanelComponent from '@src/demos/panelComponent/PanelComponent.vue';
-
-import Tabs from '@src/demos/tabs/Tabs.vue';
-
-import TextLinearGradient from '@src/demos/textLinearGradient/TextLinearGradient.vue';
 import TextNumberCountup from '@src/demos/textNumberCountup/TextNumberCountup.vue';
 
 export const demoRoutes = <RouteRecordRaw[]>[
@@ -47,9 +42,6 @@ export const demoRoutes = <RouteRecordRaw[]>[
   { path: 'chartMap', name: 'chartMap', meta: { name: '地图' }, component: ChartMap },
   { path: 'modal', name: 'modal', meta: { name: '弹窗' }, component: Modal },
   { path: 'mapboxGl', name: 'mapboxGl', meta: { name: 'MapboxGl' }, component: MapboxGl },
-  { path: 'panelComponent', name: 'panelComponent', meta: { name: 'Panel' }, component: PanelComponent },
-  { path: 'tabs', name: 'tabs', meta: { name: 'tabs' }, component: Tabs },
-  { path: 'textLinearGradient', name: 'textLinearGradient', meta: { name: '文字渐变' }, component: TextLinearGradient },
   {
     path: 'textNumberCountup',
     name: 'textNumberCountup',
