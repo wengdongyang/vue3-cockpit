@@ -11,7 +11,12 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="金字塔 - 普通">
-            <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
+            <VChart
+              :style="{ width: '100%', height: '400px' }"
+              :option="computedEchartsPyramidDefaultOption"
+              :ref="(ref) => (chartsBarCarouselHighLightRef = ref)"
+              autoSize
+            />
           </a-card>
         </a-col>
         <a-col :span="8">
@@ -32,6 +37,7 @@ import VChart, { THEME_KEY } from 'vue-echarts';
 // apis
 import { apiGetChartPyramid } from '@src/apis';
 // hooks
+import { useEchartPyramidDefault } from './hooks';
 // utils
 // types
 // stores
@@ -39,7 +45,11 @@ import { apiGetChartPyramid } from '@src/apis';
 // configs
 // components
 provide(THEME_KEY, 'dark');
-
+const chartsBarCarouselHighLightRef = ref();
+const { computedEchartsPyramidDefaultOption, setEchartPyramidDefaultSeriesData } = useEchartPyramidDefault({
+  name: 'cname',
+  value: 'num',
+});
 const pyramidValue = ref([]);
 
 const { run } = useRequest(
@@ -51,6 +61,7 @@ const { run } = useRequest(
     onSuccess: ({ code, data, msg }) => {
       if (code === 200 && data?.list?.length > 0) {
         set(pyramidValue.value, data.list);
+        setEchartPyramidDefaultSeriesData(data.list);
       } else {
         message.error(msg);
       }
