@@ -11,22 +11,12 @@
       <a-row :gutter="[12, 12]">
         <a-col :span="8">
           <a-card class="card" title="饼图 - 普通">
-            <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
+            <VChart :style="{ width: '100%', height: '400px' }" :option="computedEchartsPieDefaultOption" autoSize />
           </a-card>
         </a-col>
         <a-col :span="8">
           <a-card class="card" title="饼图 - 环形图">
-            <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
-          </a-card>
-        </a-col>
-        <a-col :span="8">
-          <a-card class="card" title="饼图 - 轮播高亮">
-            <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
-          </a-card>
-        </a-col>
-        <a-col :span="8">
-          <a-card class="card" title="饼图 - 3D">
-            <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
+            <VChart :style="{ width: '100%', height: '400px' }" :option="computedEchartsCircleDefaultOption" autoSize />
           </a-card>
         </a-col>
       </a-row>
@@ -42,6 +32,7 @@ import VChart, { THEME_KEY } from 'vue-echarts';
 // apis
 import { apiGetChartPie } from '@src/apis';
 // hooks
+import { useEchartPieDefault, useEchartCircleDefault } from './hooks';
 // utils
 // types
 // stores
@@ -51,7 +42,16 @@ import { apiGetChartPie } from '@src/apis';
 provide(THEME_KEY, 'dark');
 
 const dataSource = ref([]);
-const chartsPieCarouselHighLight = ref();
+
+const { computedEchartsPieDefaultOption, setEchartPieDefaultSeriesData } = useEchartPieDefault({
+  name: 'cname',
+  value: 'num',
+});
+
+const { computedEchartsCircleDefaultOption, setEchartCircleDefaultSeriesData } = useEchartCircleDefault({
+  name: 'cname',
+  value: 'num',
+});
 
 const { run } = useRequest(
   () => {
@@ -62,6 +62,8 @@ const { run } = useRequest(
     onSuccess: ({ code, data, msg }) => {
       if (code === 200) {
         set(dataSource, data.list);
+        setEchartPieDefaultSeriesData(data.list);
+        setEchartCircleDefaultSeriesData(data.list);
       } else {
         message.error(msg);
       }
