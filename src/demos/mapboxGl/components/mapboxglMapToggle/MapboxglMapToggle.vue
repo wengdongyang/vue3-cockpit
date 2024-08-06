@@ -28,7 +28,6 @@ import SurperMapboxglMapToggle from './MapboxglMapToggle';
 // mixins
 // configs
 import { mapboxglOptions, LAYER_GD_SATELLITE, LAYER_TIAN_SATELLITE } from './configs';
-import grids from '../../assets/json/grids.json';
 // components
 const mapDomRef = ref();
 const mapRef = ref();
@@ -37,15 +36,15 @@ const mapType = ref('tianditu');
 
 const timeoutRef = ref();
 
-const initMapStyle = () => {
+const initMapStyle = async () => {
   try {
     const mapDom = get(mapDomRef);
-
+    const geojson = await fetch('/assets/geojson/浙江省/绍兴市/柯桥区.json').then((res) => res.json());
     const map = new SurperMapboxglMapToggle({
       container: mapDom,
       mapOptions: {
         mapboxglOptions,
-        grids,
+        grids: geojson,
       },
     });
     set(mapRef, map);

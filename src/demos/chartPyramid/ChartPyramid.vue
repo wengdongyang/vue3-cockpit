@@ -19,11 +19,11 @@
             />
           </a-card>
         </a-col>
-        <a-col :span="8">
+        <!-- <a-col :span="8">
           <a-card class="card" title="金字塔 - 3D">
             <VChart :style="{ width: '100%', height: '400px' }" :option="{}" autoSize />
           </a-card>
-        </a-col>
+        </a-col> -->
       </a-row>
     </section>
   </a-page-header>

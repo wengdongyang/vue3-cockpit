@@ -16,7 +16,6 @@ import SurperMapboxglHeatmap from './MapboxglHeatmap';
 // mixins
 // configs
 import { mapboxglOptions } from '../../configs';
-import grids from '../../assets/json/grids.json';
 import cameras from '../../assets/json/cameras.json';
 // components
 const mapDomRef = ref();
@@ -36,14 +35,15 @@ const heatmap = {
   features,
 };
 
-const initMapStyle = () => {
+const initMapStyle = async () => {
   try {
+    const geojson = await fetch('/assets/geojson/浙江省/绍兴市/柯桥区.json').then((res) => res.json());
     const mapDom = get(mapDomRef);
     const map = new SurperMapboxglHeatmap({
       container: mapDom,
       mapOptions: {
         mapboxglOptions,
-        grids,
+        grids: geojson,
         heatmap,
       },
     });
@@ -53,7 +53,7 @@ const initMapStyle = () => {
   }
 };
 
-tryOnMounted(() => {
+tryOnMounted(async () => {
   initMapStyle();
 });
 </script>

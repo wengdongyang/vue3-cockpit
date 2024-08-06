@@ -20,15 +20,15 @@
           </a-card>
         </a-col>
 
-        <!-- <a-col :span="12">
+        <a-col :span="12">
           <a-card class="card" title="MapboxGl - 聚合撒点">
             <MapboxglClusterPoints />
           </a-card>
         </a-col>
-        
-        <a-col :span="24">
+
+        <a-col :span="12">
           <a-card class="card" title="MapboxGl - 白模"> </a-card>
-        </a-col> -->
+        </a-col>
       </a-row>
     </section>
   </a-page-header>

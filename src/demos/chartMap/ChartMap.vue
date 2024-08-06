@@ -25,9 +25,9 @@
   </a-page-header>
 </template>
 <script lang="jsx" setup>
-import { provide, ref } from 'vue';
-import * as echarts from 'echarts';
 import { set, tryOnMounted } from '@vueuse/core';
+import * as echarts from 'echarts';
+import { provide, ref } from 'vue';
 import VChart, { THEME_KEY } from 'vue-echarts';
 // apis
 // hooks
@@ -37,21 +37,26 @@ import { useEchartMapDefault } from './hooks';
 // stores
 // mixins
 // configs
-import geojson from './keqiao.json';
 // components
 provide(THEME_KEY, 'dark');
 const chartsBarCarouselHighLightRef = ref();
 const { computedEchartsMapDefaultOption } = useEchartMapDefault({ map: 'keqiao' });
 const isRegistered = ref(false);
 
+const getGeojson = async () => {
+  try {
+    const geojson = await fetch('/assets/geojson/浙江省/绍兴市/柯桥区.json').then((res) => res.json());
+
+    echarts.registerMap('keqiao', geojson);
+
+    set(isRegistered, true);
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
 tryOnMounted(() => {
-  echarts.registerMap('keqiao', geojson);
-
-  set(isRegistered, true);
-
-  setTimeout(() => {
-    console.error(chartsBarCarouselHighLightRef.value.getOption());
-  }, 600);
+  getGeojson();
 });
 </script>
 <style lang="less" scoped>

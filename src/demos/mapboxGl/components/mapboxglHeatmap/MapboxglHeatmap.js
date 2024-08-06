@@ -65,7 +65,7 @@ export default class SurperMapboxglHeatmap extends SurperMapboxGl {
             type: 'symbol',
             layout: {
               'icon-offset': [0, -0],
-              'text-field': ['get', 'NAME'],
+              'text-field': ['get', 'name'],
               'text-anchor': 'center',
               'text-size': 12,
               'text-offset': [0, -0],
@@ -75,7 +75,6 @@ export default class SurperMapboxglHeatmap extends SurperMapboxGl {
               'text-halo-color': 'rgba(255, 255, 255, 1)',
               'text-halo-width': 2,
             },
-            filter: ['==', '$type', 'Point'],
           });
         }
       }
