@@ -37,7 +37,7 @@ const heatmap = {
 
 const initMapStyle = async () => {
   try {
-    const geojson = await fetch('/assets/geojson/浙江省/绍兴市/柯桥区.json').then((res) => res.json());
+    const geojson = await fetch('/assets/geojson/浙江省/绍兴市.json').then((res) => res.json());
     const mapDom = get(mapDomRef);
     const map = new SurperMapboxglHeatmap({
       container: mapDom,
